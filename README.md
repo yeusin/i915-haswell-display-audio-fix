@@ -8,11 +8,9 @@ Tested on **MacBook Pro 15" Retina (Late 2013 / Mid 2014, MacBookPro11,2 / MacBo
 
 ## The Issues & Solutions
 
-### 1. 4K@60Hz & 3008x1692@60Hz Display Unlock (CVT-RB Modeline)
+### 1. 4K@60Hz Display Unlock (CVT-RB Modeline)
 * **Problem**: Intel Haswell's Core Display Clock (CDCLK) in the `i915` driver caps the maximum pixel clock at **540.00 MHz** (`max_dotclk = 540000 kHz`). Standard 4K@60Hz (CTA-861 VIC 97) requests 594.00 MHz, which `i915` rejects as `MODE_CLOCK_HIGH`, falling back to 30Hz (297 MHz).
-* **Solutions**:
-  * **3840x2160 @ 60Hz**: Custom VESA CVT-RB (Reduced Blanking) modeline at **533.00 MHz** (533 MHz < 540 MHz limit).
-  * **3008x1692 @ 60Hz**: Custom VESA CVT-RB modeline at **330.50 MHz** (the standard macOS HiDPI intermediate resolution for 4K displays).
+* **Solution**: A custom VESA CVT-RB (Reduced Blanking) modeline running at **533.00 MHz** (3840x2160 @ 59.97 Hz). Because 533 MHz < 540 MHz, the driver and GPU accept it without overclocking or kernel bypasses.
 * **Usage**: Run `./setup-4k60-display.sh` or copy `display-4k60.desktop` to `~/.config/autostart/`.
 
 ### 2. HDMI Audio Jitter & Dropouts (`snd-hda-intel` Patch)

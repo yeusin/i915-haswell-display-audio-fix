@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Name=Display Custom Modes Setup
-Comment=Apply 4K@60Hz and 3008x1692@60Hz modes on DP-1
-Exec=sh -c 'xrandr --newmode "3008x1692" 330.50 3008 3056 3088 3168 1692 1695 1700 1741 +hsync -vsync 2>/dev/null; xrandr --addmode DP-1 "3008x1692" 2>/dev/null; xrandr --addmode eDP-1 "3008x1692" 2>/dev/null; xrandr --newmode "3840x2160_rb" 533.00 3840 3888 3920 4000 2160 2163 2168 2222 +hsync -vsync 2>/dev/null; xrandr --addmode DP-1 "3840x2160_rb" 2>/dev/null; xrandr --output DP-1 --mode "3840x2160_rb" 2>/dev/null'
+Name=Display 4K 60Hz Setup
+Comment=Apply 4K@60Hz CVT-RB mode on DP-1
+Exec=sh -c 'xrandr --newmode "3840x2160_rb" 533.00 3840 3888 3920 4000 2160 2163 2168 2222 +hsync -vsync 2>/dev/null; xrandr --addmode DP-1 "3840x2160_rb" 2>/dev/null; xrandr --output DP-1 --mode "3840x2160_rb" 2>/dev/null'
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
