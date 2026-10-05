@@ -1,0 +1,23 @@
+--- src/sound/hda/controllers/intel.c.orig	2026-10-05 18:43:54.645100788 +0900
++++ src/sound/hda/controllers/intel.c	2026-10-05 18:42:35.062920359 +0900
+@@ -269,7 +269,8 @@
+ 
+ /* HSW HDMI */
+ #define AZX_DCAPS_INTEL_HASWELL \
+-	(/*AZX_DCAPS_ALIGN_BUFSIZE |*/ AZX_DCAPS_COUNT_LPIB_DELAY |\
++	(/*AZX_DCAPS_ALIGN_BUFSIZE |*/ AZX_DCAPS_POSFIX_LPIB |\
++	 AZX_DCAPS_NO_64BIT |\
+ 	 AZX_DCAPS_PM_RUNTIME | AZX_DCAPS_I915_COMPONENT |\
+ 	 AZX_DCAPS_SNOOP_TYPE(SCH))
+ 
+@@ -1739,6 +1740,10 @@
+ 			return 32;
+ 		case PCI_DEVICE_ID_INTEL_HDA_APL:
+ 			return 64;
++		case PCI_DEVICE_ID_INTEL_HDA_HSW_0:
++		case PCI_DEVICE_ID_INTEL_HDA_HSW_2:
++		case PCI_DEVICE_ID_INTEL_HDA_HSW_3:
++			return 0;
+ 		}
+ 	}
+ 

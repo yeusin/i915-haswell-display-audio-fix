@@ -1,0 +1,26 @@
+# Kernel source tree and archive files
+src/
+*.orig.tar.gz
+*.tar.gz
+*.diff.gz
+*.dsc
+
+# Build artifacts
+*.o
+*.ko
+*.ko.zst
+*.mod
+*.mod.c
+*.mod.o
+*.order
+*.symvers
+.*.cmd
+.tmp_versions/
+Module.symvers
+modules.order
+
+# Editor / backup files
+*.bak
+*.orig
+*~
+.DS_Store
