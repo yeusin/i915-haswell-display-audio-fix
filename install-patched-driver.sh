@@ -12,10 +12,16 @@ MOD_DIR="/lib/modules/${KVER}/kernel/sound/hda/controllers"
 TARGET="${MOD_DIR}/snd-hda-intel.ko.zst"
 BACKUP="${MOD_DIR}/snd-hda-intel.ko.zst.stock-backup"
 PATCHED_ZST="$(dirname "$0")/snd-hda-intel.ko.zst"
+PATCHED_KO="$(dirname "$0")/src/sound/hda/controllers/snd-hda-intel.ko"
 
 if [ ! -f "$PATCHED_ZST" ]; then
-    echo "Error: $PATCHED_ZST not found. Run make first."
-    exit 1
+    if [ -f "$PATCHED_KO" ]; then
+        echo "==> Compressing snd-hda-intel.ko with zstd..."
+        zstd -f -k "$PATCHED_KO" -o "$PATCHED_ZST"
+    else
+        echo "Error: Neither $PATCHED_ZST nor $PATCHED_KO found. Run make first."
+        exit 1
+    fi
 fi
 
 echo "==> Backing up stock module..."

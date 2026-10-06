@@ -32,7 +32,7 @@ Tested on **MacBook Pro 15" Retina (Late 2013 / Mid 2014, MacBookPro11,2 / MacBo
 * [`restore-stock-driver.sh`](restore-stock-driver.sh): 100% clean rollback script to restore the original stock driver.
 * [`setup-4k60-display.sh`](setup-4k60-display.sh): Shell script to apply the 4K@60Hz CVT-RB modeline.
 * [`display-4k60.desktop`](display-4k60.desktop): XDG autostart entry for automatic 4K@60Hz activation on login.
-* [`Makefile`](Makefile): Compiles the patched module against your currently running kernel headers.
+* [`Makefile`](Makefile): Compiles the patched module against your currently running kernel headers (automatically fetches sound drivers and applies the patch on first run).
 
 ---
 
@@ -40,11 +40,8 @@ Tested on **MacBook Pro 15" Retina (Late 2013 / Mid 2014, MacBookPro11,2 / MacBo
 
 ### 1. Build and Install the Audio Fix
 ```bash
-# Build the patched module against current kernel headers
+# Build and compress the patched module against current kernel headers
 make
-
-# Compress the module with zstd
-zstd -f -k src/sound/hda/controllers/snd-hda-intel.ko -o snd-hda-intel.ko.zst
 
 # Install and reload driver (creates backup automatically)
 sudo ./install-patched-driver.sh
